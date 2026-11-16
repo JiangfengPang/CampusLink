@@ -63,7 +63,7 @@ NuGet 会还原固定版本的 Windows App SDK `1.8.260921001` 和 C++/WinRT `3.
 
 应用输出在 `build/x64/Release/`，发行文件在 `release/`。同版本便携目录已存在时，打包会停止，避免误覆盖；请先另存该目录再重新打包。依赖、编译输出、个人设置与发行二进制均不进入 Git 历史。
 
-GitHub Actions 使用 Windows Server 2025 构建应用并运行默认测试，不连接真实学校网关。
+GitHub Actions 使用 Windows Server 2022 与 Visual Studio 2022 构建应用并运行默认测试，不连接真实学校网关。
 
 ## 验证与诊断
 
