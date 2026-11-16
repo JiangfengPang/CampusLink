@@ -1,0 +1,36 @@
+build/
+packages/
+release/
+src/obj/
+src/.vs/
+*.user
+*.pdb
+*.log
+
+# Local configuration, credentials, signing material and editor state
+.vs/
+.vscode/
+.env
+.env.*
+!.env.example
+credential.xml
+settings.json
+*.clixml
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+*.crt
+*.tmp
+*.bak
+Thumbs.db
+Desktop.ini
+
+# Release binaries belong in GitHub Releases
+*.exe
+*.dll
+*.zip
+*.msix
+*.msixbundle
+*.nupkg

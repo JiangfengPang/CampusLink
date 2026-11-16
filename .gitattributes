@@ -1,0 +1,11 @@
+* text=auto
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.ps1 text eol=crlf
+*.cpp text eol=crlf
+*.h text eol=crlf
+*.hpp text eol=crlf
+*.xaml text eol=crlf
+*.vcxproj text eol=crlf
+*.ico binary

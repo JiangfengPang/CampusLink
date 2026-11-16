@@ -1,0 +1,29 @@
+#include <windows.h>
+101 ICON "../assets/CampusLink.ico"
+1 VERSIONINFO
+FILEVERSION 1,1,4,0
+PRODUCTVERSION 1,1,4,0
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "080404b0"
+  BEGIN
+   VALUE "CompanyName", "CampusLink"
+   VALUE "FileDescription", "CampusLink - Campus network sign-in"
+   VALUE "FileVersion", "1.1.4"
+   VALUE "InternalName", "CampusLink"
+   VALUE "OriginalFilename", "CampusLink.exe"
+   VALUE "ProductName", "CampusLink"
+   VALUE "ProductVersion", "1.1.4"
+   VALUE "LegalCopyright", "Copyright (c) 2026 CampusLink contributors"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x804, 1200
+ END
+END

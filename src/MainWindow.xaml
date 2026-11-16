@@ -1,0 +1,312 @@
+<Window x:Class="CampusLink.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="校园网 · CampusLink">
+    <Grid x:Name="RootPanel" Loaded="OnLoaded">
+        <Grid.Resources>
+            <Storyboard x:Key="StatusEntryAnimation">
+                <DoubleAnimation Storyboard.TargetName="StatusText" Storyboard.TargetProperty="Opacity" From="0.35" To="1" Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="StatusTextOffset" Storyboard.TargetProperty="Y" From="4" To="0" Duration="0:0:0.24">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="StatusVisual" Storyboard.TargetProperty="Opacity" From="0.4" To="1" Duration="0:0:0.2" />
+            </Storyboard>
+            <Storyboard x:Key="StatusConnectingAnimation" RepeatBehavior="Forever">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BusyHalo" Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.05" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0.16">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="0.05">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BusyHaloScale" Storyboard.TargetProperty="ScaleX">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.84" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1.08">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="0.84">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BusyHaloScale" Storyboard.TargetProperty="ScaleY">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.84" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1.08">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="0.84">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="StatusOnlineAnimation">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OnlineIconScale" Storyboard.TargetProperty="ScaleX">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.6" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.24" Value="1.12">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.38" Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OnlineIconScale" Storyboard.TargetProperty="ScaleY">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.6" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.24" Value="1.12">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.38" Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimation Storyboard.TargetName="OnlineRippleScale" Storyboard.TargetProperty="ScaleX" From="0.65" To="1.6" Duration="0:0:0.48">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="OnlineRippleScale" Storyboard.TargetProperty="ScaleY" From="0.65" To="1.6" Duration="0:0:0.48">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="OnlineRipple" Storyboard.TargetProperty="Opacity" From="0.24" To="0" Duration="0:0:0.48" />
+            </Storyboard>
+            <Storyboard x:Key="StatusErrorAnimation">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="StatusCardOffset" Storyboard.TargetProperty="X">
+                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.08" Value="-3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.16" Value="3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.26" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+        <NavigationView x:Name="Navigation" PaneTitle="CampusLink" PaneDisplayMode="Auto" OpenPaneLength="224" CompactPaneLength="56" CompactModeThresholdWidth="640" ExpandedModeThresholdWidth="900" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" AlwaysShowHeader="False" SelectionChanged="OnNavigationChanged" DisplayModeChanged="OnNavigationDisplayModeChanged">
+            <NavigationView.PaneCustomContent>
+                <Grid Margin="12,16,12,24" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Width="32" Height="32" CornerRadius="9" Background="{ThemeResource AccentFillColorDefaultBrush}" VerticalAlignment="Center">
+                        <FontIcon Glyph="" FontSize="18" Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                    </Border>
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock Text="校园网" FontSize="20" FontWeight="SemiBold" />
+                        <TextBlock Text="喀什大学" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                </Grid>
+            </NavigationView.PaneCustomContent>
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="ConnectionNavItem" Content="校园网连接" Tag="connection">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem x:Name="DisclaimerNavItem" Content="免责声明" Tag="disclaimer">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xE946;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="PreferencesNavItem" Content="偏好设置" Tag="preferences">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="ContentPanel" Padding="28,24,28,28" Spacing="24">
+                    <StackPanel Spacing="6">
+                        <TextBlock x:Name="PageHeading" Text="校园网连接" FontSize="28" FontWeight="SemiBold" />
+                        <TextBlock x:Name="PageDescription" Text="轻松连接校园网，开始每一天。" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                    <InfoBar x:Name="Notice" IsOpen="False" IsClosable="True" Severity="Informational" />
+                    <Grid x:Name="ConnectionPage" ColumnSpacing="20" RowSpacing="20" SizeChanged="OnConnectionLayoutChanged">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="StatusColumn" Width="*" />
+                            <ColumnDefinition x:Name="AccountColumn" Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="StatusCard" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="12" Padding="24" VerticalAlignment="Top">
+                            <Border.RenderTransform>
+                                <TranslateTransform x:Name="StatusCardOffset" />
+                            </Border.RenderTransform>
+                            <StackPanel Spacing="24">
+                                <TextBlock Text="连接状态" FontWeight="SemiBold" FontSize="16" />
+                                <Grid ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="StatusVisual" Width="40" Height="40" VerticalAlignment="Center" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw">
+                                        <Ellipse x:Name="BusyHalo" Width="38" Height="38" Fill="{ThemeResource AccentFillColorDefaultBrush}" Opacity="0" RenderTransformOrigin="0.5,0.5">
+                                            <Ellipse.RenderTransform>
+                                                <ScaleTransform x:Name="BusyHaloScale" />
+                                            </Ellipse.RenderTransform>
+                                        </Ellipse>
+                                        <ProgressRing x:Name="BusyRing" Width="26" Height="26" IsActive="False" Visibility="Collapsed" />
+                                        <FontIcon x:Name="BusyStillIcon" Glyph="" FontSize="23" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Visibility="Collapsed" />
+                                        <FontIcon x:Name="StatusIcon" Glyph="" FontSize="25" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="Collapsed" />
+                                        <Ellipse x:Name="OnlineRipple" Width="34" Height="34" Fill="{ThemeResource SystemFillColorSuccessBrush}" Opacity="0" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                                            <Ellipse.RenderTransform>
+                                                <ScaleTransform x:Name="OnlineRippleScale" />
+                                            </Ellipse.RenderTransform>
+                                        </Ellipse>
+                                        <Border x:Name="OnlineSymbol" Width="36" Height="36" CornerRadius="18" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" Visibility="Collapsed">
+                                            <FontIcon Glyph="" FontSize="22" Foreground="{ThemeResource SystemFillColorSuccessBrush}" RenderTransformOrigin="0.5,0.5">
+                                                <FontIcon.RenderTransform>
+                                                    <ScaleTransform x:Name="OnlineIconScale" />
+                                                </FontIcon.RenderTransform>
+                                            </FontIcon>
+                                        </Border>
+                                        <Border x:Name="ErrorSymbol" Width="36" Height="36" CornerRadius="18" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Visibility="Collapsed">
+                                            <FontIcon Glyph="" FontSize="22" Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        </Border>
+                                    </Grid>
+                                    <StackPanel x:Name="StatusText" Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                        <StackPanel.RenderTransform>
+                                            <TranslateTransform x:Name="StatusTextOffset" />
+                                        </StackPanel.RenderTransform>
+                                        <TextBlock x:Name="StatusTitle" Text="正在检查连接" TextWrapping="Wrap" FontSize="20" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite" />
+                                        <TextBlock x:Name="StatusDescription" Text="正在联系校园网认证服务器…" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Grid>
+                                <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                    <Button x:Name="RefreshStatusButton" Content="刷新状态" HorizontalAlignment="Stretch" Click="OnRefresh" />
+                                    <Button x:Name="LogoutButton" Grid.Column="1" Content="注销校园网" HorizontalAlignment="Stretch" Click="OnLogout" IsEnabled="False" />
+                                </Grid>
+                                <StackPanel Spacing="10">
+                                    <HyperlinkButton x:Name="SchoolLoginLink" Content="打开学校登录页" NavigateUri="http://172.17.1.90/" Padding="0,4" />
+                                    <HyperlinkButton Content="打开有线网备用入口" NavigateUri="http://172.31.0.10/a79.htm" Padding="0,4" />
+                                    <Button x:Name="DiagnoseButton" Content="网络诊断" Click="OnDiagnose" />
+                                    <TextBlock Text="已在线时会直接跳过认证。网络连接异常时，也可以使用学校登录页。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="AccountCard" Grid.Row="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="12" Padding="24" VerticalAlignment="Top">
+                            <StackPanel Spacing="24">
+                                <TextBlock Text="校园网账号" FontWeight="SemiBold" FontSize="16" />
+                                <StackPanel Spacing="16">
+                                    <TextBox x:Name="AccountBox" Header="账号" PlaceholderText="输入学号或校园网账号" MaxLength="64" KeyDown="OnInputKeyDown" AutomationProperties.Name="校园网账号" />
+                                    <PasswordBox x:Name="PasswordInput" Header="密码" PlaceholderText="输入校园网密码" MaxLength="128" PasswordRevealMode="Peek" KeyDown="OnInputKeyDown" AutomationProperties.Name="校园网密码" />
+                                    <CheckBox x:Name="RememberBox" IsChecked="True">
+                                        <TextBlock Text="在这台电脑上记住账号密码" TextWrapping="Wrap" />
+                                    </CheckBox>
+                                </StackPanel>
+                                <StackPanel Spacing="10">
+                                    <Button x:Name="ConnectButton" Content="一键登录" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Height="42" Click="OnConnect" />
+                                    <Grid ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="SaveButton" Content="保存账号" HorizontalAlignment="Stretch" Click="OnSave" />
+                                        <Button x:Name="ForgetButton" Grid.Column="1" Content="清除本机账号" HorizontalAlignment="Stretch" Click="OnForget" IsEnabled="False" />
+                                    </Grid>
+                                </StackPanel>
+                                <TextBlock Text="密码由 Windows 保存在本机，登录时仅发送给学校认证服务器。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <StackPanel x:Name="PreferencesPage" Spacing="16" Visibility="Collapsed">
+                        <TextBlock Text="连接行为" FontSize="16" FontWeight="SemiBold" />
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="20">
+                            <Grid ColumnSpacing="24">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <StackPanel Spacing="6" VerticalAlignment="Center">
+                                    <TextBlock Text="开机启动并自动连接" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="StartupHelp" Text="先保存账号，再开启开机连接。此功能默认关闭。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch x:Name="StartupSwitch" Grid.Column="1" AutomationProperties.Name="开机启动并自动连接" OnContent="" OffContent="" MinWidth="0" IsOn="False" VerticalAlignment="Center" Toggled="OnStartupChanged" />
+                            </Grid>
+                        </Border>
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="20">
+                            <Grid ColumnSpacing="24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Spacing="6" VerticalAlignment="Center">
+                                    <TextBlock Text="打开应用时自动登录" TextWrapping="Wrap" />
+                                    <TextBlock Text="使用已保存在这台电脑上的账号进行认证。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch x:Name="AutoLoginSwitch" Grid.Column="1" AutomationProperties.Name="打开应用时自动登录" OnContent="" OffContent="" MinWidth="0" IsOn="True" VerticalAlignment="Center" Toggled="OnPreferencesChanged" />
+                            </Grid>
+                        </Border>
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="20">
+                            <Grid ColumnSpacing="24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Spacing="6" VerticalAlignment="Center">
+                                    <TextBlock Text="认证成功后自动关闭" TextWrapping="Wrap" />
+                                    <TextBlock Text="确认在线后等待 4 秒关闭窗口；操作窗口可取消关闭。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch x:Name="AutoCloseSwitch" Grid.Column="1" AutomationProperties.Name="认证成功后自动关闭" OnContent="" OffContent="" MinWidth="0" IsOn="True" VerticalAlignment="Center" Toggled="OnPreferencesChanged" />
+                            </Grid>
+                        </Border>
+                        <TextBlock Text="关于" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,0" />
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="20">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="CampusLink 1.1.4" FontWeight="SemiBold" />
+                                <TextBlock Text="喀什大学非官方校园网助手" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <TextBlock Text="应用退出后不驻留；安装版和便携版在同一 Windows 用户下共用账号与偏好设置。" TextWrapping="Wrap" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel x:Name="DisclaimerPage" Spacing="16" Visibility="Collapsed">
+                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="24">
+                            <StackPanel Spacing="18">
+                                <TextBlock Text="非官方辅助工具" FontSize="16" FontWeight="SemiBold" />
+                                <TextBlock Text="CampusLink 由独立开发者提供，与喀什大学及校园网运营方不存在官方隶属、授权或担保关系。学校的网络管理规定、收费政策和账户处理结果，以校方或运营方公布的信息为准。" TextWrapping="Wrap" />
+                                <TextBlock Text="合规使用" FontSize="16" FontWeight="SemiBold" />
+                                <TextBlock Text="请仅使用你有权使用的账号，并遵守学校网络管理规定及适用法律。本工具只简化原有认证与注销操作，不提供绕过认证、计费或账户限制的功能。注销会断开本机的校园网认证连接。" TextWrapping="Wrap" />
+                                <TextBlock Text="账号与数据" FontSize="16" FontWeight="SemiBold" />
+                                <TextBlock Text="记住账号后，密码由当前 Windows 用户的凭据管理器保存；以同一 Windows 用户运行的其他程序可能访问这些凭据。认证时，账号密码及必要的网络信息仅发送到学校网关。学校当前采用 HTTP，传输方式与原登录页一致。应用不添加遥测、广告或云端账号同步。请勿在公共电脑上保存账号。" TextWrapping="Wrap" />
+                                <TextBlock Text="可用性与责任" FontSize="16" FontWeight="SemiBold" />
+                                <TextBlock Text="软件按现状提供。学校接口、网络环境和账户政策可能变化，开发者不保证持续可用、不中断或完全无误。请自行核对认证、注销和计费结果，并保留学校登录页作为备用。在法律允许的范围内，开发者不对网络中断、账户异常或使用本工具造成的损失承担责任；法律另有规定的除外。本声明不限制依法不得排除的权利与责任。" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    <TextBlock Text="CampusLink 1.1.4 · 非官方校园网助手" FontSize="12" Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                </StackPanel>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
+</Window>
